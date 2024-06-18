@@ -2392,7 +2392,7 @@ pub const FramebufferAttachment = enum(types.Enum) {
 };
 
 pub fn framebufferTexture(buffer: types.Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, texture: types.Texture, level: i32) void {
-    buffer.bind(.buffer);
+    buffer.bind(target);
     binding.framebufferTexture(@intFromEnum(target), @intFromEnum(attachment), @as(types.UInt, @intCast(@intFromEnum(texture))), @as(types.Int, @intCast(level)));
     checkError();
 }
@@ -2416,13 +2416,13 @@ pub const FramebufferTextureTarget = enum(types.Enum) {
 };
 
 pub fn framebufferTexture2D(buffer: types.Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, textarget: FramebufferTextureTarget, texture: types.Texture, level: i32) void {
-    buffer.bind(.buffer);
+    buffer.bind(target);
     binding.framebufferTexture2D(@intFromEnum(target), @intFromEnum(attachment), @intFromEnum(textarget), @as(types.UInt, @intCast(@intFromEnum(texture))), @as(types.Int, @intCast(level)));
     checkError();
 }
 
 pub fn framebufferRenderbuffer(buffer: types.Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, rbtarget: RenderbufferTarget, renderbuffer: types.Renderbuffer) void {
-    buffer.bind(.buffer);
+    buffer.bind(target);
     binding.framebufferRenderbuffer(@intFromEnum(target), @intFromEnum(attachment), @intFromEnum(rbtarget), @as(types.UInt, @intCast(@intFromEnum(renderbuffer))));
     checkError();
 }
